@@ -10,7 +10,7 @@ categories:
 summary: "A tour of the build script that turns Markdown files into a fully featured static blog."
 ---
 
-The build script that assembles this site is intentionally small, but it covers everything a modern blog needs. Every run performs a fresh sweep of the `dist` directory, parses each Markdown file with front matter, and outputs HTML, Markdown, and JSON views for every post.
+The build script that assembles this site is intentionally small, but it covers everything a modern blog needs. Every run performs a fresh sweep of the `docs` directory, parses each Markdown file with front matter, and outputs HTML, Markdown, and JSON views for every post.
 
 ### Key steps in the pipeline
 

@@ -9,7 +9,7 @@ A framework-free static blog generator that turns Markdown files into a fully fe
 - 🧭 **Automatic navigation** – index pages, pagination, and taxonomy pages for tags and categories are generated on build.
 - 🔁 **Multiple post formats** – every article is available as rendered HTML, the original Markdown file, and a machine-friendly JSON document.
 - 📰 **RSS feed** – keep subscribers up to date with a standards-compliant feed.
-- 🌎 **Ready for static hosts** – deploy the `/dist` output to GitHub Pages, Cloudflare Pages, or any CDN.
+- 🌎 **Ready for static hosts** – deploy the `/docs` output to GitHub Pages, Cloudflare Pages, or any CDN.
 
 ## Getting started
 
@@ -25,7 +25,7 @@ A framework-free static blog generator that turns Markdown files into a fully fe
    npm run build
    ```
 
-   The static site is emitted to the `dist` directory. Open `dist/index.html` in a browser or serve the folder with your favourite static file server.
+   The static site is emitted to the `docs` directory. Open `docs/index.html` in a browser or serve the folder with your favourite static file server.
 
 ## Authoring content
 
@@ -65,13 +65,13 @@ A framework-free static blog generator that turns Markdown files into a fully fe
 ### GitHub Pages
 
 1. Commit the repository and push to GitHub.
-2. Enable GitHub Pages and set the build command to `npm run build` with `dist` as the output directory.
+2. Enable GitHub Pages and set the build command to `npm run build` with `docs` as the output directory.
 3. If the site is hosted at a project sub-path, update `basePath` in `site.config.js` (e.g. `/my-blog/`).
 
 ### Cloudflare Pages
 
 1. Create a new Pages project and connect your repository.
-2. Configure the build command (`npm run build`) and output directory (`dist`).
+2. Configure the build command (`npm run build`) and output directory (`docs`).
 3. Deploy—Cloudflare will serve the static files globally.
 
 Because the output is static, the same instructions apply to Netlify, Vercel static exports, or any other CDN-aware hosting platform.
@@ -82,8 +82,8 @@ Because the output is static, the same instructions apply to Netlify, Vercel sta
 .
 ├── build.js          # Static site generator
 ├── posts/            # Markdown sources with front matter
-├── src/assets/       # Shared CSS (and optional JS) copied into dist/assets
-├── dist/             # Generated output (created after running the build)
+├── src/assets/       # Shared CSS (and optional JS) copied into docs/assets
+├── docs/             # Generated output (created after running the build)
 └── site.config.js    # Site-wide configuration
 ```
 

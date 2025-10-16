@@ -1,0 +1,29 @@
+{
+  "title": "Building the Static Generation Pipeline",
+  "slug": "static-generation-pipeline",
+  "date": "2024-10-01T00:00:00.000Z",
+  "formattedDate": "October 1, 2024",
+  "description": "A tour of the build script that turns Markdown files into a fully featured static blog.",
+  "excerpt": "A tour of the build script that turns Markdown files into a fully featured static blog.",
+  "tags": [
+    "static-site",
+    "tooling",
+    "markdown"
+  ],
+  "categories": [
+    "Engineering"
+  ],
+  "author": {
+    "name": "Site Author",
+    "email": "author@example.com"
+  },
+  "urls": {
+    "html": "https://example.com/posts/static-generation-pipeline/",
+    "markdown": "https://example.com/posts/static-generation-pipeline.md",
+    "json": "https://example.com/posts/static-generation-pipeline.json"
+  },
+  "content": {
+    "markdown": "The build script that assembles this site is intentionally small, but it covers everything a modern blog needs. Every run performs a fresh sweep of the `docs` directory, parses each Markdown file with front matter, and outputs HTML, Markdown, and JSON views for every post.\n\n### Key steps in the pipeline\n\n1. **Front matter parsing** – Metadata such as title, date, tags, and categories are extracted with a lightweight library so writers can express structure without touching code.\n2. **HTML conversion** – Content passes through the Markdown renderer and receives a shared layout that keeps navigation consistent across the entire site.\n3. **Multi-format output** – Alongside the HTML view we publish the original Markdown file and a JSON representation that is perfect for LLM ingestion or automation.\n\n```bash\nnpm run build\n```\n\nRunning the build command is all it takes to regenerate the blog. The script handles pagination arrays, taxonomy pages, and even generates the RSS feed from the latest posts so readers can subscribe immediately.\n\nIn upcoming posts we will take a closer look at how each phase works and how you can tune it for your own publishing workflow.",
+    "html": "<p>The build script that assembles this site is intentionally small, but it covers everything a modern blog needs. Every run performs a fresh sweep of the <code>docs</code> directory, parses each Markdown file with front matter, and outputs HTML, Markdown, and JSON views for every post.</p>\n<h3>Key steps in the pipeline</h3>\n<ol>\n<li><strong>Front matter parsing</strong> – Metadata such as title, date, tags, and categories are extracted with a lightweight library so writers can express structure without touching code.</li>\n<li><strong>HTML conversion</strong> – Content passes through the Markdown renderer and receives a shared layout that keeps navigation consistent across the entire site.</li>\n<li><strong>Multi-format output</strong> – Alongside the HTML view we publish the original Markdown file and a JSON representation that is perfect for LLM ingestion or automation.</li>\n</ol>\n<pre><code class=\"language-bash\">npm run build\n</code></pre>\n<p>Running the build command is all it takes to regenerate the blog. The script handles pagination arrays, taxonomy pages, and even generates the RSS feed from the latest posts so readers can subscribe immediately.</p>\n<p>In upcoming posts we will take a closer look at how each phase works and how you can tune it for your own publishing workflow.</p>\n"
+  }
+}
