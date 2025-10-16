@@ -1,0 +1,22 @@
+{
+  "name": "vanilla-markdown-blog",
+  "version": "1.0.0",
+  "description": "Static site generator for a vanilla HTML, CSS, and JavaScript markdown blog.",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [
+    "static-site-generator",
+    "markdown",
+    "blog",
+    "vanilla"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^9.1.5"
+  }
+}
