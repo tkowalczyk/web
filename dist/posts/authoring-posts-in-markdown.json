@@ -1,0 +1,29 @@
+{
+  "title": "Authoring Posts in Pure Markdown",
+  "slug": "authoring-posts-in-markdown",
+  "date": "2024-09-15T00:00:00.000Z",
+  "formattedDate": "September 15, 2024",
+  "description": "Tips for writing rich posts using only Markdown and a small amount of front matter.",
+  "excerpt": "Tips for writing rich posts using only Markdown and a small amount of front matter.",
+  "tags": [
+    "writing",
+    "markdown",
+    "workflow"
+  ],
+  "categories": [
+    "Guides"
+  ],
+  "author": {
+    "name": "Site Author",
+    "email": "author@example.com"
+  },
+  "urls": {
+    "html": "https://example.com/posts/authoring-posts-in-markdown/",
+    "markdown": "https://example.com/posts/authoring-posts-in-markdown.md",
+    "json": "https://example.com/posts/authoring-posts-in-markdown.json"
+  },
+  "content": {
+    "markdown": "Markdown remains the friendliest way to create structured content without touching HTML. With a few conventions you can write quickly and still give the build script everything it needs.\n\n### Start with descriptive front matter\n\nAdd a short YAML block to the top of the file that declares the title, publication date, and any tags or categories. This metadata drives navigation, previews, and the RSS feed.\n\n### Keep formatting lightweight\n\nUse headings to break up sections, bullet lists for quick wins, and fenced code blocks for snippets. The stylesheet takes care of presentation, so there is no need to embed inline styles or custom classes.\n\n### Preview locally\n\nRun `npm run build` and open the generated HTML file in your browser. Because the output is static, you can even serve it with a simple Python HTTP server to mimic production hosting.\n\nWriting in Markdown keeps the publishing workflow approachable for writers and maintainable for developers. Less time spent on formatting means more time crafting stories worth reading.",
+    "html": "<p>Markdown remains the friendliest way to create structured content without touching HTML. With a few conventions you can write quickly and still give the build script everything it needs.</p>\n<h3>Start with descriptive front matter</h3>\n<p>Add a short YAML block to the top of the file that declares the title, publication date, and any tags or categories. This metadata drives navigation, previews, and the RSS feed.</p>\n<h3>Keep formatting lightweight</h3>\n<p>Use headings to break up sections, bullet lists for quick wins, and fenced code blocks for snippets. The stylesheet takes care of presentation, so there is no need to embed inline styles or custom classes.</p>\n<h3>Preview locally</h3>\n<p>Run <code>npm run build</code> and open the generated HTML file in your browser. Because the output is static, you can even serve it with a simple Python HTTP server to mimic production hosting.</p>\n<p>Writing in Markdown keeps the publishing workflow approachable for writers and maintainable for developers. Less time spent on formatting means more time crafting stories worth reading.</p>\n"
+  }
+}

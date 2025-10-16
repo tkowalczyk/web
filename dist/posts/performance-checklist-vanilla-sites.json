@@ -1,0 +1,29 @@
+{
+  "title": "Performance Checklist for Vanilla Sites",
+  "slug": "performance-checklist-vanilla-sites",
+  "date": "2024-09-05T00:00:00.000Z",
+  "formattedDate": "September 5, 2024",
+  "description": "A quick checklist to keep framework-free sites loading fast and staying accessible.",
+  "excerpt": "A quick checklist to keep framework-free sites loading fast and staying accessible.",
+  "tags": [
+    "performance",
+    "best-practices",
+    "optimization"
+  ],
+  "categories": [
+    "Best Practices"
+  ],
+  "author": {
+    "name": "Site Author",
+    "email": "author@example.com"
+  },
+  "urls": {
+    "html": "https://example.com/posts/performance-checklist-vanilla-sites/",
+    "markdown": "https://example.com/posts/performance-checklist-vanilla-sites.md",
+    "json": "https://example.com/posts/performance-checklist-vanilla-sites.json"
+  },
+  "content": {
+    "markdown": "Lightweight sites deserve to feel fast. The fact that this blog ships no runtime framework gives us a head start, but there are still a few habits worth adopting.\n\n## Performance checks before deploying\n\n- **Audit image sizes.** Resize and compress assets so they fit the layout and load instantly on mobile connections.\n- **Minimize CSS.** Keep the stylesheet focused on layout and typography. When possible, remove unused selectors between releases.\n- **Lean on browser caching.** Because file names rarely change, static hosts can cache aggressively and reduce repeat fetches.\n- **Validate accessibility.** Headings, landmarks, and link text should remain descriptive to help assistive technologies.\n\n## Automate what matters\n\nEven without a complex toolchain you can automate link checking, HTML validation, or feed verification in CI. These lightweight safeguards protect your readers while preserving the simplicity that drew you to a vanilla stack in the first place.",
+    "html": "<p>Lightweight sites deserve to feel fast. The fact that this blog ships no runtime framework gives us a head start, but there are still a few habits worth adopting.</p>\n<h2>Performance checks before deploying</h2>\n<ul>\n<li><strong>Audit image sizes.</strong> Resize and compress assets so they fit the layout and load instantly on mobile connections.</li>\n<li><strong>Minimize CSS.</strong> Keep the stylesheet focused on layout and typography. When possible, remove unused selectors between releases.</li>\n<li><strong>Lean on browser caching.</strong> Because file names rarely change, static hosts can cache aggressively and reduce repeat fetches.</li>\n<li><strong>Validate accessibility.</strong> Headings, landmarks, and link text should remain descriptive to help assistive technologies.</li>\n</ul>\n<h2>Automate what matters</h2>\n<p>Even without a complex toolchain you can automate link checking, HTML validation, or feed verification in CI. These lightweight safeguards protect your readers while preserving the simplicity that drew you to a vanilla stack in the first place.</p>\n"
+  }
+}

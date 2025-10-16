@@ -1,0 +1,29 @@
+{
+  "title": "Deploying to GitHub Pages and Cloudflare Pages",
+  "slug": "deploying-to-modern-hosts",
+  "date": "2024-09-20T00:00:00.000Z",
+  "formattedDate": "September 20, 2024",
+  "description": "Simple deployment workflows for publishing the generated site to GitHub Pages or Cloudflare Pages.",
+  "excerpt": "Simple deployment workflows for publishing the generated site to GitHub Pages or Cloudflare Pages.",
+  "tags": [
+    "deployment",
+    "github-pages",
+    "cloudflare-pages"
+  ],
+  "categories": [
+    "Operations"
+  ],
+  "author": {
+    "name": "Site Author",
+    "email": "author@example.com"
+  },
+  "urls": {
+    "html": "https://example.com/posts/deploying-to-modern-hosts/",
+    "markdown": "https://example.com/posts/deploying-to-modern-hosts.md",
+    "json": "https://example.com/posts/deploying-to-modern-hosts.json"
+  },
+  "content": {
+    "markdown": "Static output is wonderfully portable. Once the generator finishes, everything lives inside a single `dist` directory that can be uploaded to any static host. Two popular options—GitHub Pages and Cloudflare Pages—require just a handful of steps.\n\n### GitHub Pages\n\n1. Push your repository to GitHub and enable GitHub Pages in the project settings.\n2. Configure the site to use the `dist` directory, either through the Pages build workflow or by checking in the generated files on a dedicated branch.\n3. Update the `basePath` value in `site.config.js` if you are hosting under a project subdirectory (e.g. `/my-blog/`).\n\n### Cloudflare Pages\n\n1. Create a Pages project and connect it to your repository.\n2. Set the build command to `npm run build` and the output directory to `dist`.\n3. Deploy, then take advantage of Cloudflare's global CDN and preview deployments.\n\nBoth hosts handle HTTPS, caching, and CDN distribution out of the box. With the generator doing the heavy lifting you can deploy confidently in minutes.",
+    "html": "<p>Static output is wonderfully portable. Once the generator finishes, everything lives inside a single <code>dist</code> directory that can be uploaded to any static host. Two popular options—GitHub Pages and Cloudflare Pages—require just a handful of steps.</p>\n<h3>GitHub Pages</h3>\n<ol>\n<li>Push your repository to GitHub and enable GitHub Pages in the project settings.</li>\n<li>Configure the site to use the <code>dist</code> directory, either through the Pages build workflow or by checking in the generated files on a dedicated branch.</li>\n<li>Update the <code>basePath</code> value in <code>site.config.js</code> if you are hosting under a project subdirectory (e.g. <code>/my-blog/</code>).</li>\n</ol>\n<h3>Cloudflare Pages</h3>\n<ol>\n<li>Create a Pages project and connect it to your repository.</li>\n<li>Set the build command to <code>npm run build</code> and the output directory to <code>dist</code>.</li>\n<li>Deploy, then take advantage of Cloudflare&#39;s global CDN and preview deployments.</li>\n</ol>\n<p>Both hosts handle HTTPS, caching, and CDN distribution out of the box. With the generator doing the heavy lifting you can deploy confidently in minutes.</p>\n"
+  }
+}
