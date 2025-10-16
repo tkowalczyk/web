@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Building the Static Generation Pipeline · Vanilla Markdown Blog</title>
+  <meta name="description" content="A tour of the build script that turns Markdown files into a fully featured static blog." />
+  <link rel="canonical" href="https://example.com/posts/static-generation-pipeline/" />
+  <link rel="alternate" type="application/rss+xml" title="Vanilla Markdown Blog RSS Feed" href="/feed.xml" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="/">Vanilla Markdown Blog</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/tags/">Tags</a>
+        <a href="/categories/">Categories</a>
+        <a href="/feed.xml">RSS</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <div class="container">
+      
+      
+    <article class="post">
+      <header class="post-header">
+        <h1>Building the Static Generation Pipeline</h1>
+        <div class="post-meta">
+          <time datetime="2024-10-01T00:00:00.000Z">October 1, 2024</time>
+          <span>Categories: <a href="/categories/engineering/">Engineering</a></span>
+<span>Tags: <a href="/tags/static-site/">static-site</a>, <a href="/tags/tooling/">tooling</a>, <a href="/tags/markdown/">markdown</a></span>
+        </div>
+        <div class="post-formats">
+          <a class="format-link" href="/posts/static-generation-pipeline.md">Markdown</a>
+          <a class="format-link" href="/posts/static-generation-pipeline.json">JSON</a>
+        </div>
+      </header>
+      <div class="post-content">
+        <p>The build script that assembles this site is intentionally small, but it covers everything a modern blog needs. Every run performs a fresh sweep of the <code>dist</code> directory, parses each Markdown file with front matter, and outputs HTML, Markdown, and JSON views for every post.</p>
+<h3>Key steps in the pipeline</h3>
+<ol>
+<li><strong>Front matter parsing</strong> – Metadata such as title, date, tags, and categories are extracted with a lightweight library so writers can express structure without touching code.</li>
+<li><strong>HTML conversion</strong> – Content passes through the Markdown renderer and receives a shared layout that keeps navigation consistent across the entire site.</li>
+<li><strong>Multi-format output</strong> – Alongside the HTML view we publish the original Markdown file and a JSON representation that is perfect for LLM ingestion or automation.</li>
+</ol>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<p>Running the build command is all it takes to regenerate the blog. The script handles pagination arrays, taxonomy pages, and even generates the RSS feed from the latest posts so readers can subscribe immediately.</p>
+<p>In upcoming posts we will take a closer look at how each phase works and how you can tune it for your own publishing workflow.</p>
+
+      </div>
+      <footer class="post-footer"><div class="taxonomy-categories"><span>Categories:</span><a href="/categories/engineering/">Engineering</a></div><div class="taxonomy-tags"><span>Filed under:</span><a href="/tags/static-site/">#static-site</a> <a href="/tags/tooling/">#tooling</a> <a href="/tags/markdown/">#markdown</a></div></footer>
+    </article>
+    <nav class="post-pagination" aria-label="Post pagination"><a class="post-nav-link newer" href="/posts/fresh-markdown-blog-experience/">← A Fresh Markdown Blog Experience</a><a class="post-nav-link older" href="/posts/organizing-content-tags-categories/">Organizing Content with Tags and Categories →</a></nav>
+  
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Vanilla Markdown Blog. Built with vanilla HTML, CSS, and JavaScript.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Authoring Posts in Pure Markdown · Vanilla Markdown Blog</title>
+  <meta name="description" content="Tips for writing rich posts using only Markdown and a small amount of front matter." />
+  <link rel="canonical" href="https://example.com/posts/authoring-posts-in-markdown/" />
+  <link rel="alternate" type="application/rss+xml" title="Vanilla Markdown Blog RSS Feed" href="/feed.xml" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-title" href="/">Vanilla Markdown Blog</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/tags/">Tags</a>
+        <a href="/categories/">Categories</a>
+        <a href="/feed.xml">RSS</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+    <div class="container">
+      
+      
+    <article class="post">
+      <header class="post-header">
+        <h1>Authoring Posts in Pure Markdown</h1>
+        <div class="post-meta">
+          <time datetime="2024-09-15T00:00:00.000Z">September 15, 2024</time>
+          <span>Categories: <a href="/categories/guides/">Guides</a></span>
+<span>Tags: <a href="/tags/writing/">writing</a>, <a href="/tags/markdown/">markdown</a>, <a href="/tags/workflow/">workflow</a></span>
+        </div>
+        <div class="post-formats">
+          <a class="format-link" href="/posts/authoring-posts-in-markdown.md">Markdown</a>
+          <a class="format-link" href="/posts/authoring-posts-in-markdown.json">JSON</a>
+        </div>
+      </header>
+      <div class="post-content">
+        <p>Markdown remains the friendliest way to create structured content without touching HTML. With a few conventions you can write quickly and still give the build script everything it needs.</p>
+<h3>Start with descriptive front matter</h3>
+<p>Add a short YAML block to the top of the file that declares the title, publication date, and any tags or categories. This metadata drives navigation, previews, and the RSS feed.</p>
+<h3>Keep formatting lightweight</h3>
+<p>Use headings to break up sections, bullet lists for quick wins, and fenced code blocks for snippets. The stylesheet takes care of presentation, so there is no need to embed inline styles or custom classes.</p>
+<h3>Preview locally</h3>
+<p>Run <code>npm run build</code> and open the generated HTML file in your browser. Because the output is static, you can even serve it with a simple Python HTTP server to mimic production hosting.</p>
+<p>Writing in Markdown keeps the publishing workflow approachable for writers and maintainable for developers. Less time spent on formatting means more time crafting stories worth reading.</p>
+
+      </div>
+      <footer class="post-footer"><div class="taxonomy-categories"><span>Categories:</span><a href="/categories/guides/">Guides</a></div><div class="taxonomy-tags"><span>Filed under:</span><a href="/tags/writing/">#writing</a> <a href="/tags/markdown/">#markdown</a> <a href="/tags/workflow/">#workflow</a></div></footer>
+    </article>
+    <nav class="post-pagination" aria-label="Post pagination"><a class="post-nav-link newer" href="/posts/deploying-to-modern-hosts/">← Deploying to GitHub Pages and Cloudflare Pages</a><a class="post-nav-link older" href="/posts/performance-checklist-vanilla-sites/">Performance Checklist for Vanilla Sites →</a></nav>
+  
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Vanilla Markdown Blog. Built with vanilla HTML, CSS, and JavaScript.</p>
+    </div>
+  </footer>
+</body>
+</html>

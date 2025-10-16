@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Vanilla Markdown Blog</title>
+  <link>https://example.com/</link>
+  <description>A minimal markdown-powered blog generated with vanilla JavaScript.</description>
+  <language>en</language>
+  <atom:link href="https://example.com/feed.xml" rel="self" type="application/rss+xml" />
+  <item>
+    <title>A Fresh Markdown Blog Experience</title>
+    <link>https://example.com/posts/fresh-markdown-blog-experience/</link>
+    <guid>https://example.com/posts/fresh-markdown-blog-experience/</guid>
+    <pubDate>Sat, 05 Oct 2024 00:00:00 GMT</pubDate>
+    <description><![CDATA[An introduction to the new vanilla markdown blog and what to expect from upcoming articles.]]></description>
+    <content:encoded><![CDATA[<p>Welcome to the very first post on the Vanilla Markdown Blog! This site is an experiment in building a fast, maintainable publishing workflow using nothing but Markdown, a sprinkling of Node.js, and pure browser-native technologies.</p>
+<h2>Why vanilla technologies?</h2>
+<p>The web has an incredible toolbox, but sometimes it is easy to forget how far you can go with the core platform. By skipping frameworks for the front end we:</p>
+<ul>
+<li>Keep bundle sizes microscopic for quick page loads.</li>
+<li>Reduce complexity so content creators can focus on writing.</li>
+<li>Gain full control over every pixel without fighting someone else&#39;s abstractions.</li>
+</ul>
+<h2>What you can expect</h2>
+<p>Over the next few weeks we will unpack how the generator works, how to extend it for your own needs, and how to deploy the final output with confidence. You can look forward to:</p>
+<ol>
+<li>Deep dives on the build pipeline powering this site.</li>
+<li>Practical guides for authoring content in Markdown.</li>
+<li>Deployment recipes for popular static hosting providers.</li>
+</ol>
+<p>Thank you for stopping by on day one. Subscribe to the RSS feed to follow along as we keep pushing the limits of a framework-free blog.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Building the Static Generation Pipeline</title>
+    <link>https://example.com/posts/static-generation-pipeline/</link>
+    <guid>https://example.com/posts/static-generation-pipeline/</guid>
+    <pubDate>Tue, 01 Oct 2024 00:00:00 GMT</pubDate>
+    <description><![CDATA[A tour of the build script that turns Markdown files into a fully featured static blog.]]></description>
+    <content:encoded><![CDATA[<p>The build script that assembles this site is intentionally small, but it covers everything a modern blog needs. Every run performs a fresh sweep of the <code>dist</code> directory, parses each Markdown file with front matter, and outputs HTML, Markdown, and JSON views for every post.</p>
+<h3>Key steps in the pipeline</h3>
+<ol>
+<li><strong>Front matter parsing</strong> – Metadata such as title, date, tags, and categories are extracted with a lightweight library so writers can express structure without touching code.</li>
+<li><strong>HTML conversion</strong> – Content passes through the Markdown renderer and receives a shared layout that keeps navigation consistent across the entire site.</li>
+<li><strong>Multi-format output</strong> – Alongside the HTML view we publish the original Markdown file and a JSON representation that is perfect for LLM ingestion or automation.</li>
+</ol>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<p>Running the build command is all it takes to regenerate the blog. The script handles pagination arrays, taxonomy pages, and even generates the RSS feed from the latest posts so readers can subscribe immediately.</p>
+<p>In upcoming posts we will take a closer look at how each phase works and how you can tune it for your own publishing workflow.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Organizing Content with Tags and Categories</title>
+    <link>https://example.com/posts/organizing-content-tags-categories/</link>
+    <guid>https://example.com/posts/organizing-content-tags-categories/</guid>
+    <pubDate>Sat, 28 Sep 2024 00:00:00 GMT</pubDate>
+    <description><![CDATA[How tags and categories keep a static markdown blog navigable without any client-side routing.]]></description>
+    <content:encoded><![CDATA[<p>A blog is only as useful as its navigation. Tags and categories give readers multiple pathways to the ideas that interest them most, and they require almost no overhead when working in Markdown.</p>
+<h2>Tags vs. categories</h2>
+<ul>
+<li><strong>Categories</strong> describe the broad buckets of content on the site. Think &quot;Engineering&quot;, &quot;Content Strategy&quot;, or &quot;Productivity&quot;.</li>
+<li><strong>Tags</strong> capture more granular concepts such as &quot;metadata&quot;, &quot;deployment&quot;, or &quot;CLI tooling&quot;.</li>
+</ul>
+<p>By combining both, we make it trivial to surface related material without implementing client-side routing or complicated search engines.</p>
+<h2>Building the taxonomy index</h2>
+<p>During the build process we gather every tag and category, group the posts, and generate dedicated listing pages. Each page inherits the same layout and exposes links back to the original articles. Because everything is statically rendered there is no need for hash-based routing or runtime fetches—links are simple, descriptive URLs.</p>
+<p>When you publish your own content, invest a few seconds in tags and categories. The payoff is a smooth reading experience for visitors and a searchable archive for you.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Deploying to GitHub Pages and Cloudflare Pages</title>
+    <link>https://example.com/posts/deploying-to-modern-hosts/</link>
+    <guid>https://example.com/posts/deploying-to-modern-hosts/</guid>
+    <pubDate>Fri, 20 Sep 2024 00:00:00 GMT</pubDate>
+    <description><![CDATA[Simple deployment workflows for publishing the generated site to GitHub Pages or Cloudflare Pages.]]></description>
+    <content:encoded><![CDATA[<p>Static output is wonderfully portable. Once the generator finishes, everything lives inside a single <code>dist</code> directory that can be uploaded to any static host. Two popular options—GitHub Pages and Cloudflare Pages—require just a handful of steps.</p>
+<h3>GitHub Pages</h3>
+<ol>
+<li>Push your repository to GitHub and enable GitHub Pages in the project settings.</li>
+<li>Configure the site to use the <code>dist</code> directory, either through the Pages build workflow or by checking in the generated files on a dedicated branch.</li>
+<li>Update the <code>basePath</code> value in <code>site.config.js</code> if you are hosting under a project subdirectory (e.g. <code>/my-blog/</code>).</li>
+</ol>
+<h3>Cloudflare Pages</h3>
+<ol>
+<li>Create a Pages project and connect it to your repository.</li>
+<li>Set the build command to <code>npm run build</code> and the output directory to <code>dist</code>.</li>
+<li>Deploy, then take advantage of Cloudflare&#39;s global CDN and preview deployments.</li>
+</ol>
+<p>Both hosts handle HTTPS, caching, and CDN distribution out of the box. With the generator doing the heavy lifting you can deploy confidently in minutes.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Authoring Posts in Pure Markdown</title>
+    <link>https://example.com/posts/authoring-posts-in-markdown/</link>
+    <guid>https://example.com/posts/authoring-posts-in-markdown/</guid>
+    <pubDate>Sun, 15 Sep 2024 00:00:00 GMT</pubDate>
+    <description><![CDATA[Tips for writing rich posts using only Markdown and a small amount of front matter.]]></description>
+    <content:encoded><![CDATA[<p>Markdown remains the friendliest way to create structured content without touching HTML. With a few conventions you can write quickly and still give the build script everything it needs.</p>
+<h3>Start with descriptive front matter</h3>
+<p>Add a short YAML block to the top of the file that declares the title, publication date, and any tags or categories. This metadata drives navigation, previews, and the RSS feed.</p>
+<h3>Keep formatting lightweight</h3>
+<p>Use headings to break up sections, bullet lists for quick wins, and fenced code blocks for snippets. The stylesheet takes care of presentation, so there is no need to embed inline styles or custom classes.</p>
+<h3>Preview locally</h3>
+<p>Run <code>npm run build</code> and open the generated HTML file in your browser. Because the output is static, you can even serve it with a simple Python HTTP server to mimic production hosting.</p>
+<p>Writing in Markdown keeps the publishing workflow approachable for writers and maintainable for developers. Less time spent on formatting means more time crafting stories worth reading.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Performance Checklist for Vanilla Sites</title>
+    <link>https://example.com/posts/performance-checklist-vanilla-sites/</link>
+    <guid>https://example.com/posts/performance-checklist-vanilla-sites/</guid>
+    <pubDate>Thu, 05 Sep 2024 00:00:00 GMT</pubDate>
+    <description><![CDATA[A quick checklist to keep framework-free sites loading fast and staying accessible.]]></description>
+    <content:encoded><![CDATA[<p>Lightweight sites deserve to feel fast. The fact that this blog ships no runtime framework gives us a head start, but there are still a few habits worth adopting.</p>
+<h2>Performance checks before deploying</h2>
+<ul>
+<li><strong>Audit image sizes.</strong> Resize and compress assets so they fit the layout and load instantly on mobile connections.</li>
+<li><strong>Minimize CSS.</strong> Keep the stylesheet focused on layout and typography. When possible, remove unused selectors between releases.</li>
+<li><strong>Lean on browser caching.</strong> Because file names rarely change, static hosts can cache aggressively and reduce repeat fetches.</li>
+<li><strong>Validate accessibility.</strong> Headings, landmarks, and link text should remain descriptive to help assistive technologies.</li>
+</ul>
+<h2>Automate what matters</h2>
+<p>Even without a complex toolchain you can automate link checking, HTML validation, or feed verification in CI. These lightweight safeguards protect your readers while preserving the simplicity that drew you to a vanilla stack in the first place.</p>
+]]></content:encoded>
+  </item>
+</channel>
+</rss>
