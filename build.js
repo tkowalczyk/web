@@ -7,7 +7,7 @@ const config = require("./site.config");
 
 const ROOT_DIR = __dirname;
 const POSTS_DIR = path.join(ROOT_DIR, "posts");
-const DIST_DIR = path.join(ROOT_DIR, "dist");
+const OUTPUT_DIR = path.join(ROOT_DIR, "docs");
 const ASSETS_DIR = path.join(ROOT_DIR, "src", "assets");
 const BASE_PATH = normalizeBasePath(config.basePath);
 const SITE_URL = ensureTrailingSlash(config.siteUrl || "");
@@ -20,7 +20,7 @@ marked.use({
 
 async function buildSite() {
   try {
-    await cleanDist();
+    await cleanOutput();
     await copyAssets();
     const posts = await loadPosts();
     await generatePostPages(posts);
@@ -45,13 +45,13 @@ async function buildSite() {
   }
 }
 
-async function cleanDist() {
-  await fse.remove(DIST_DIR);
-  await fse.ensureDir(DIST_DIR);
+async function cleanOutput() {
+  await fse.remove(OUTPUT_DIR);
+  await fse.ensureDir(OUTPUT_DIR);
 }
 
 async function copyAssets() {
-  const destination = path.join(DIST_DIR, "assets");
+  const destination = path.join(OUTPUT_DIR, "assets");
   if (await fse.pathExists(ASSETS_DIR)) {
     await fse.copy(ASSETS_DIR, destination);
   }
@@ -116,7 +116,7 @@ async function generatePostPages(posts) {
     return;
   }
 
-  const postsDir = path.join(DIST_DIR, "posts");
+  const postsDir = path.join(OUTPUT_DIR, "posts");
   await fse.ensureDir(postsDir);
 
   for (let index = 0; index < posts.length; index += 1) {
@@ -177,9 +177,9 @@ async function generateIndexPages(posts) {
     });
 
     if (currentPage === 1) {
-      await fs.writeFile(path.join(DIST_DIR, "index.html"), html, "utf8");
+      await fs.writeFile(path.join(OUTPUT_DIR, "index.html"), html, "utf8");
     } else {
-      const pageDir = path.join(DIST_DIR, "page", String(currentPage));
+      const pageDir = path.join(OUTPUT_DIR, "page", String(currentPage));
       await fse.ensureDir(pageDir);
       await fs.writeFile(path.join(pageDir, "index.html"), html, "utf8");
     }
@@ -188,7 +188,7 @@ async function generateIndexPages(posts) {
 
 async function generateTaxonomyPages(posts, { type, directory, pageTitle, emptyMessage }) {
   const taxonomyItems = collectTaxonomy(posts, type);
-  const baseDir = path.join(DIST_DIR, directory);
+  const baseDir = path.join(OUTPUT_DIR, directory);
   await fse.ensureDir(baseDir);
 
   const overviewContent = renderLayout({
@@ -255,7 +255,7 @@ async function generateFeed(posts) {
     ""
   ].join("\n");
 
-  const outputPath = path.join(DIST_DIR, feedPath);
+  const outputPath = path.join(OUTPUT_DIR, feedPath);
   await fse.ensureDir(path.dirname(outputPath));
   await fs.writeFile(outputPath, rss, "utf8");
 }
