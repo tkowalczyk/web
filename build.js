@@ -1,6 +1,5 @@
 const path = require("node:path");
 const fs = require("node:fs/promises");
-const fse = require("fs-extra");
 const matter = require("gray-matter");
 const { marked } = require("marked");
 const config = require("./site.config");
@@ -46,19 +45,42 @@ async function buildSite() {
 }
 
 async function cleanOutput() {
-  await fse.remove(OUTPUT_DIR);
-  await fse.ensureDir(OUTPUT_DIR);
+  try {
+    await fs.rm(OUTPUT_DIR, { recursive: true, force: true });
+  } catch (error) {
+    // Directory doesn't exist, which is fine
+  }
+  await fs.mkdir(OUTPUT_DIR, { recursive: true });
 }
 
 async function copyAssets() {
   const destination = path.join(OUTPUT_DIR, "assets");
-  if (await fse.pathExists(ASSETS_DIR)) {
-    await fse.copy(ASSETS_DIR, destination);
+  try {
+    await fs.access(ASSETS_DIR);
+    await copyDirectory(ASSETS_DIR, destination);
+  } catch (error) {
+    // Assets directory doesn't exist, skip copying
+  }
+}
+
+async function copyDirectory(src, dest) {
+  await fs.mkdir(dest, { recursive: true });
+  const entries = await fs.readdir(src, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    
+    if (entry.isDirectory()) {
+      await copyDirectory(srcPath, destPath);
+    } else {
+      await fs.copyFile(srcPath, destPath);
+    }
   }
 }
 
 async function loadPosts() {
-  await fse.ensureDir(POSTS_DIR);
+  await fs.mkdir(POSTS_DIR, { recursive: true });
   const entries = await fs.readdir(POSTS_DIR);
   const markdownFiles = entries.filter((item) => item.toLowerCase().endsWith(".md"));
 
@@ -117,24 +139,22 @@ async function generatePostPages(posts) {
   }
 
   const postsDir = path.join(OUTPUT_DIR, "posts");
-  await fse.ensureDir(postsDir);
+  await fs.mkdir(postsDir, { recursive: true });
 
-  for (let index = 0; index < posts.length; index += 1) {
-    const post = posts[index];
+  // Generate all posts in parallel
+  const postPromises = posts.map(async (post, index) => {
     const newer = index > 0 ? posts[index - 1] : null;
     const older = index < posts.length - 1 ? posts[index + 1] : null;
 
     const postDir = path.join(postsDir, post.slug);
-    await fse.ensureDir(postDir);
+    await fs.mkdir(postDir, { recursive: true });
 
     const htmlPath = path.join(postDir, "index.html");
     const markdownPath = path.join(postsDir, `${post.slug}.md`);
     const jsonPath = path.join(postsDir, `${post.slug}.json`);
 
     const rendered = renderPostPage(post, { newer, older });
-    await fs.writeFile(htmlPath, rendered, "utf8");
-    await fs.writeFile(markdownPath, post.raw, "utf8");
-
+    
     const jsonData = {
       title: post.title,
       slug: post.slug,
@@ -156,8 +176,15 @@ async function generatePostPages(posts) {
       }
     };
 
-    await fs.writeFile(jsonPath, `${JSON.stringify(jsonData, null, 2)}\n`, "utf8");
-  }
+    // Write all files for this post in parallel
+    await Promise.all([
+      fs.writeFile(htmlPath, rendered, "utf8"),
+      fs.writeFile(markdownPath, post.raw, "utf8"),
+      fs.writeFile(jsonPath, `${JSON.stringify(jsonData, null, 2)}\n`, "utf8")
+    ]);
+  });
+
+  await Promise.all(postPromises);
 }
 
 async function generateIndexPages(posts) {
@@ -180,7 +207,7 @@ async function generateIndexPages(posts) {
       await fs.writeFile(path.join(OUTPUT_DIR, "index.html"), html, "utf8");
     } else {
       const pageDir = path.join(OUTPUT_DIR, "page", String(currentPage));
-      await fse.ensureDir(pageDir);
+      await fs.mkdir(pageDir, { recursive: true });
       await fs.writeFile(path.join(pageDir, "index.html"), html, "utf8");
     }
   }
@@ -189,7 +216,7 @@ async function generateIndexPages(posts) {
 async function generateTaxonomyPages(posts, { type, directory, pageTitle, emptyMessage }) {
   const taxonomyItems = collectTaxonomy(posts, type);
   const baseDir = path.join(OUTPUT_DIR, directory);
-  await fse.ensureDir(baseDir);
+  await fs.mkdir(baseDir, { recursive: true });
 
   const overviewContent = renderLayout({
     title: `${capitalize(directory)} · ${config.siteName}`,
@@ -203,7 +230,7 @@ async function generateTaxonomyPages(posts, { type, directory, pageTitle, emptyM
 
   for (const item of taxonomyItems) {
     const itemDir = path.join(baseDir, item.slug);
-    await fse.ensureDir(itemDir);
+    await fs.mkdir(itemDir, { recursive: true });
 
     const pageContent = renderLayout({
       title: `${capitalize(type)}: ${item.name} · ${config.siteName}`,
@@ -256,7 +283,7 @@ async function generateFeed(posts) {
   ].join("\n");
 
   const outputPath = path.join(OUTPUT_DIR, feedPath);
-  await fse.ensureDir(path.dirname(outputPath));
+  await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.writeFile(outputPath, rss, "utf8");
 }
 
